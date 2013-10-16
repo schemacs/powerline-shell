@@ -9,6 +9,8 @@ def add_root_indicator_segment():
     if powerline.args.prev_error != 0:
         fg = Color.CMD_FAILED_FG
         bg = Color.CMD_FAILED_BG
+        if powerline.args.shell == 'bash':
+            powerline.append('\a', fg, bg)
     powerline.append(root_indicators[powerline.args.shell], fg, bg)
 
 add_root_indicator_segment()
