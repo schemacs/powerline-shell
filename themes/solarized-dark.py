@@ -1,4 +1,4 @@
-class Color:
+class Color(DefaultColor):
     USERNAME_FG = 15
     USERNAME_BG = 4
 
@@ -10,6 +10,9 @@ class Color:
     PATH_BG = 10
     CWD_FG = 15
     SEPARATOR_FG = 14
+
+    READONLY_BG = 1
+    READONLY_FG = 7
 
     REPO_CLEAN_FG = 14
     REPO_CLEAN_BG = 0

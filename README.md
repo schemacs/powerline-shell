@@ -18,7 +18,7 @@ A [Powerline](https://github.com/Lokaltog/vim-powerline) like prompt for Bash, Z
 
 This script uses ANSI color codes to display colors in a terminal. These are
 notoriously non-portable, so may not work for you out of the box, but try 
-setting your $TERM to xterm-256color, because that works for me.
+setting your $TERM to `xterm-256color`, because that works for me.
 
 * Patch the font you use for your terminal: see https://github.com/Lokaltog/powerline-fonts
 
@@ -29,7 +29,7 @@ setting your $TERM to xterm-256color, because that works for me.
 
         git clone https://github.com/milkbikis/powerline-shell
 
-* Configure the segments you want by editing `config.py`. Then run
+* Copy `config.py.dist` to `config.py` and edit it to configure the segments you want. Then run
 
         ./install.py
 
@@ -62,7 +62,7 @@ There are a few optional arguments which can be seen by running `powerline-shell
 Add the following to your `.bashrc`:
 
         function _update_ps1() {
-           export PS1="$(~/powerline-shell.py $?)"
+           export PS1="$(~/powerline-shell.py $? 2> /dev/null)"
         }
 
         export PROMPT_COMMAND="_update_ps1"
@@ -71,7 +71,7 @@ Add the following to your `.bashrc`:
 Add the following to your `.zshrc`:
 
         function powerline_precmd() {
-          export PS1="$(~/powerline-shell.py $? --shell zsh)"
+          export PS1="$(~/powerline-shell.py $? --shell zsh 2> /dev/null)"
         }
 
         function install_powerline_precmd() {
@@ -89,7 +89,7 @@ Add the following to your `.zshrc`:
 Redefine `fish_prompt` in ~/.config/fish/config.fish:
 
         function fish_prompt
-            ~/powerline-shell.py $status --shell bare
+            ~/powerline-shell.py $status --shell bare ^/dev/null
         end
 
 # Customization
@@ -114,10 +114,15 @@ Make sure that your script does not introduce new globals which might conflict
 with other scripts. Your script should fail silently and run quickly in any
 scenario.
 
+Make sure you introduce new default colors in `themes/default.py` for every new
+segment you create. Test your segment with this theme first.
+
 ### Themes
 
 The `themes` directory stores themes for your prompt, which are basically color
-values used by segments. Create a new theme by copying `themes/default.py` and
+values used by segments. The `default.py` defines a default theme which can be
+used standalone, and every other theme falls back to it if they miss colors for
+any segments. Create new themes by copying any other existing theme and
 changing the values. To use a theme, set the `THEME` variable in `config.py` to
 the name of your theme.
 

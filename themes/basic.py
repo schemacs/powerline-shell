@@ -1,6 +1,6 @@
 # Basic theme which only uses colors in 0-15 range
 
-class Color:
+class Color(DefaultColor):
     USERNAME_FG = 8
     USERNAME_BG = 15
 
@@ -12,6 +12,9 @@ class Color:
     PATH_FG = 7 # light grey
     CWD_FG = 15 # white
     SEPARATOR_FG = 7
+
+    READONLY_BG = 1
+    READONLY_FG = 15
 
     REPO_CLEAN_BG = 2  # green
     REPO_CLEAN_FG = 0  # black
