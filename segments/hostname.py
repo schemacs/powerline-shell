@@ -19,6 +19,9 @@ def add_hostname_segment():
             import socket
             #host_prompt = ' %s' % socket.gethostname().split('.')[0]
             host_prompt = ' %s' % (socket.gethostname().split('.')[0].replace('%s-' % os.getenv('USERNAME'), ''))
+            known_hosts = {'sunrise-E49': 'sunrise'}
+            if host_prompt.strip() in known_hosts:
+                host_prompt = known_hosts[host_prompt.strip()]
 
         powerline.append(host_prompt, Color.HOSTNAME_FG, Color.HOSTNAME_BG)
 
