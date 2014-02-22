@@ -16,7 +16,8 @@ class Powerline:
             'separator_thin': u'\u276F'
         },
         'patched': {
-            'lock': u'\uE0A2',
+            #'lock': u'\uE0A2',
+            'lock': u'\u26A9',
             'separator': u'\u2B80',
             'separator_thin': u'\u2B81'
             #'separator': u'\uE0B0',
